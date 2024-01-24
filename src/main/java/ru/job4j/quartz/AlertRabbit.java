@@ -21,6 +21,7 @@ public class AlertRabbit {
             scheduler.scheduleJob(job, trigger);
         } catch (SchedulerException se) {
             se.printStackTrace();
+
         }
     }
 
