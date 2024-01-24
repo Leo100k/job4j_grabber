@@ -29,6 +29,5 @@ public class AlertRabbit {
         public void execute(JobExecutionContext context) {
             System.out.println("Rabbit runs here ...");
         }
-
     }
 }
