@@ -16,7 +16,6 @@ import static org.quartz.SimpleScheduleBuilder.*;
 
 public class AlertRabbit {
 
-
     private static Connection createConnection() throws IOException {
         Properties config = new Properties();
         Connection connection;
@@ -44,7 +43,6 @@ public class AlertRabbit {
         }
         return config;
     }
-
 
     public static void main(String[] args) {
         try {
