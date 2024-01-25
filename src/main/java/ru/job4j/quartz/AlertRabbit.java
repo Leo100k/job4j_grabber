@@ -66,12 +66,12 @@ public class AlertRabbit {
             scheduler.scheduleJob(job, trigger);
             Thread.sleep(5000);
             scheduler.shutdown();
+            connection.close();
         } catch (Exception se) {
             se.printStackTrace();
         }
     }
 
-    @SuppressWarnings("SqlResolve")
     public static class Rabbit implements Job {
         public Rabbit() {
             System.out.println(hashCode());
