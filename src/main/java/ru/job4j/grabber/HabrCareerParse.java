@@ -15,19 +15,23 @@ public class HabrCareerParse {
 
     public static void main(String[] args) throws IOException {
         int pageNumber = 1;
-        String fullLink = "%s%s%d%s".formatted(SOURCE_LINK, PREFIX, pageNumber, SUFFIX);
-        Connection connection = Jsoup.connect(fullLink);
-        Document document = connection.get();
-        Elements rows = document.select(".vacancy-card__inner");
-        rows.forEach(row -> {
-            Element titleElement = row.select(".vacancy-card__title").first();
-            Element linkElement = titleElement.child(0);
-            String vacancyName = titleElement.text();
-            Element dateEliment = row.select(".vacancy-card__date").first();
-            Element dateTimeEliment = dateEliment.child(0);
-            String link = String.format("%s%s", SOURCE_LINK, linkElement.attr("href"));
-            String dateString = String.format("%s", dateTimeEliment.attr("datetime"));
-            System.out.printf("%s %s %s%n", dateString, vacancyName, link);
-           });
+     do {
+         System.out.println("Страница " + pageNumber);
+         String fullLink = "%s%s%d%s".formatted(SOURCE_LINK, PREFIX, pageNumber, SUFFIX);
+         Connection connection = Jsoup.connect(fullLink);
+         Document document = connection.get();
+         Elements rows = document.select(".vacancy-card__inner");
+         rows.forEach(row -> {
+             Element titleElement = row.select(".vacancy-card__title").first();
+             Element linkElement = titleElement.child(0);
+             String vacancyName = titleElement.text();
+             Element dateEliment = row.select(".vacancy-card__date").first();
+             Element dateTimeEliment = dateEliment.child(0);
+             String link = String.format("%s%s", SOURCE_LINK, linkElement.attr("href"));
+             String dateString = String.format("%s", dateTimeEliment.attr("datetime"));
+             System.out.printf("%s %s %s%n", dateString, vacancyName, link);
+         });
+         pageNumber++;
+     } while (pageNumber < 6);
     }
 }
