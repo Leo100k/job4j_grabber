@@ -26,12 +26,12 @@ public class Post {
         if (!(o instanceof Post post)) {
             return false;
         }
-        return id == post.id;
+        return getId() == post.getId() && Objects.equals(getLink(), post.getLink());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(getId(), getLink());
     }
 
     @Override
