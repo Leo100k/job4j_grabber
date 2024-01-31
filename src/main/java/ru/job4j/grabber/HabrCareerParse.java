@@ -25,7 +25,7 @@ public class HabrCareerParse implements Parse {
     private static String description = null;
 
     public static void main(String[] args) throws IOException {
-       HabrCareerParse  leoParser = new HabrCareerParse(new HabrCareerDateTimeParser());
+        HabrCareerParse  leoParser = new HabrCareerParse(new HabrCareerDateTimeParser());
         List<Post> post = leoParser.list("https://career.habr.com/vacancies/java_developer?page=");
         leoParser.printPost(post);
     }
@@ -57,7 +57,7 @@ public class HabrCareerParse implements Parse {
                   postInner.add(new Post(1, vacancyName, link, description, dateTimeParser.parse(dateString)));
             });
             pageNumber++;
-        } while (pageNumber < 5);
+        } while (pageNumber < 2);
 
         return postInner;
     }
