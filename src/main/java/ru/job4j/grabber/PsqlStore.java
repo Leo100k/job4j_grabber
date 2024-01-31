@@ -11,7 +11,7 @@ import java.util.Properties;
 
 public class PsqlStore implements Store {
     public static void main(String[] args) throws IOException {
-        HabrCareerParse leoParser = new HabrCareerParse(new HabrCareerDateTimeParser());
+        Parse leoParser = new HabrCareerParse(new HabrCareerDateTimeParser());
         List<Post> post = leoParser.list("https://career.habr.com/vacancies/java_developer?page=");
         Properties config = new Properties();
         try (InputStream in = PsqlStore.class.getClassLoader().getResourceAsStream("rabbit.properties")) {
@@ -42,8 +42,7 @@ public class PsqlStore implements Store {
                 config.getProperty("url"),
                 config.getProperty("username"),
                 config.getProperty("password"));
-        /* connection = DriverManager.getConnection(...); */
-    }
+        }
 
     @Override
     public void save(Post post) {

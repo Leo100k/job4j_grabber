@@ -57,7 +57,7 @@ public class HabrCareerParse implements Parse {
                   postInner.add(new Post(1, vacancyName, link, description, dateTimeParser.parse(dateString)));
             });
             pageNumber++;
-        } while (pageNumber < 2);
+        } while (pageNumber < 5);
 
         return postInner;
     }
