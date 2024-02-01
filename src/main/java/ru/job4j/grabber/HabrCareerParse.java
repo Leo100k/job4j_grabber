@@ -23,6 +23,7 @@ public class HabrCareerParse implements Parse {
     public static final String PREFIX = "/vacancies?page=";
     public static final String SUFFIX = "&q=Java%20developer&type=all";
     private static String description = null;
+    private static final int QTY_PAGES = 5;
 
     public static void main(String[] args) throws IOException {
         HabrCareerParse  leoParser = new HabrCareerParse(new HabrCareerDateTimeParser());
@@ -57,8 +58,8 @@ public class HabrCareerParse implements Parse {
                   postInner.add(new Post(1, vacancyName, link, description, dateTimeParser.parse(dateString)));
             });
             pageNumber++;
-        } while (pageNumber < 5);
-
+        } while (pageNumber < QTY_PAGES + 1);
+      System.out.println("SIZE " + postInner.size());
         return postInner;
     }
 
