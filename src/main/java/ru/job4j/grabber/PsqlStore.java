@@ -42,7 +42,7 @@ public class PsqlStore implements Store {
                 config.getProperty("url"),
                 config.getProperty("username"),
                 config.getProperty("password"));
-        }
+    }
 
     @Override
     public void save(Post post) {
@@ -52,7 +52,7 @@ public class PsqlStore implements Store {
                              Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, post.getTitle());
             statement.setString(2, post.getDescription());
-            statement.setString(3, post.getLink());
+            statement.setString(3, post.getLink() + "1");
             statement.setTimestamp(4, Timestamp.valueOf(post.getCreated()));
             statement.execute();
             try (ResultSet generatedKeys = statement.getGeneratedKeys()) {

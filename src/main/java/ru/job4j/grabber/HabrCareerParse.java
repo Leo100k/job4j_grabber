@@ -23,12 +23,11 @@ public class HabrCareerParse implements Parse {
     public static final String PREFIX = "/vacancies?page=";
     public static final String SUFFIX = "&q=Java%20developer&type=all";
     private static String description = null;
-    private static final int QTY_PAGES = 5;
+    private static final int QTY_PAGES = 1;
 
     public static void main(String[] args) throws IOException {
         HabrCareerParse  leoParser = new HabrCareerParse(new HabrCareerDateTimeParser());
         List<Post> post = leoParser.list("https://career.habr.com/vacancies/java_developer?page=");
-        leoParser.printPost(post);
     }
 
   @Override
@@ -37,7 +36,7 @@ public class HabrCareerParse implements Parse {
         List<Post> postInner = new ArrayList<>();
         int pageNumber = 1;
         do {
-            System.out.println("Страница " + pageNumber);
+            System.out.println("Страница " + pageNumber++);
             String fullLink = "%s%d".formatted(slink, pageNumber);
             Connection connection = Jsoup.connect(fullLink);
             Document document = connection.get();
@@ -73,11 +72,4 @@ public class HabrCareerParse implements Parse {
         });
         return description;
     }
-
-    private void printPost(List<Post> post) {
-        if (post != null) {
-            System.out.println(post);
-        }
-    }
-
 }
