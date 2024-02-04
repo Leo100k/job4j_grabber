@@ -98,7 +98,6 @@ public class Grabber implements Grab {
         var time = Integer.parseInt(config.getProperty("rabbit.interval"));
         Grabber grab = new Grabber(parse, store, scheduler, time);
         grab.init();
-       // Grabber grab = new Grabber();
         grab.web(store, config);
     }
 }
